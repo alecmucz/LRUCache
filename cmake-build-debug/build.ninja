@@ -55,6 +55,12 @@ build CMakeFiles/LRUcache.dir/main.cpp.o: CXX_COMPILER__LRUcache_unscanned_Debug
   OBJECT_DIR = CMakeFiles/LRUcache.dir
   OBJECT_FILE_DIR = CMakeFiles/LRUcache.dir
 
+build CMakeFiles/LRUcache.dir/src/LRUCache.cpp.o: CXX_COMPILER__LRUcache_unscanned_Debug /home/amucz0/DevProjects/LRUcache/src/LRUCache.cpp || cmake_object_order_depends_target_LRUcache
+  DEP_FILE = CMakeFiles/LRUcache.dir/src/LRUCache.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/LRUcache.dir
+  OBJECT_FILE_DIR = CMakeFiles/LRUcache.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target LRUcache
@@ -63,7 +69,7 @@ build CMakeFiles/LRUcache.dir/main.cpp.o: CXX_COMPILER__LRUcache_unscanned_Debug
 #############################################
 # Link the executable LRUcache
 
-build LRUcache: CXX_EXECUTABLE_LINKER__LRUcache_Debug CMakeFiles/LRUcache.dir/main.cpp.o
+build LRUcache: CXX_EXECUTABLE_LINKER__LRUcache_Debug CMakeFiles/LRUcache.dir/main.cpp.o CMakeFiles/LRUcache.dir/src/LRUCache.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/LRUcache.dir
   POST_BUILD = :

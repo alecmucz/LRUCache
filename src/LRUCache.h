@@ -9,18 +9,23 @@
 #include <unordered_map>
 using namespace std;
 
+typedef struct Node{
+    int key;
+    int value;
+} Node;
+
 class LRUCache {
 private:
-    list<int> data;
-    unordered_map<int, int> ptrs;
+    list<Node> list;
+    unordered_map<int, Node*> ptrs;
     int size;
 
 public:
     LRUCache();
     explicit LRUCache(int maxSize);
 
-    int getLRU();
-    int get(int key);
+    Node* getLRU();
+    Node* get(int key);
     void put(int key, int value);
     void remove(int key);
 };
