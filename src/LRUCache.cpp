@@ -29,8 +29,8 @@ void LRUCache::put(const int key,const int value) {
     if(ptrs.find(key) != ptrs.end()) {
         //TO-DO: Delete Node
     }
-    list.push_front(Node{key,value});
-    ptrs[key] = &(*list.begin());
+    cacheList.push_front(Node{key,value});
+    ptrs[key] = &(*cacheList.begin());
 
 }
 

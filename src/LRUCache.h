@@ -16,7 +16,7 @@ typedef struct Node{
 
 class LRUCache {
 private:
-    list<Node> list;
+    list<Node> cacheList;
     unordered_map<int, Node*> ptrs;
     int size;
 
