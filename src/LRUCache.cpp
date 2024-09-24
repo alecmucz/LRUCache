@@ -5,10 +5,6 @@
 #include <iostream>
 using namespace std;
 
-LRUCache::LRUCache() {
-    this->size = 0;
-}
-
 LRUCache::LRUCache(const int maxSize) {
     this->size = maxSize;
 }
@@ -22,26 +18,26 @@ int LRUCache::getLRU() {
 
 int LRUCache::get(const int key) {
     if(auto const element = ptrs.find(key); element != ptrs.end()) {
-        // To-Do: Fix this monstrocity using splice
-        cacheList.erase(element->second);
-        ptrs.erase(element->first);
-        cacheList.push_front(Node{key,element->second->value});
-        ptrs.insert(key, element->second->value);
+        cacheList.splice(cacheList.begin(),cacheList,element->second);
         return element->second->value;
     }
-    std::cout << "Item Does Not Exist" << endl;
     return -1;
 }
 
 void LRUCache::put(const int key,const int value) {
-    if(ptrs.find(key) != ptrs.end()) {
-        //TO-DO: Delete Node
-        const auto it = ptrs[key];
-        cacheList.erase(ptrs[key]);
+    auto const element = ptrs.find(key);
+    if(element != ptrs.end()) {
+        element->second->value = value;
+        cacheList.splice(cacheList.begin(),cacheList,element->second);
+    } else {
+        if(cacheList.size() >= size) {
+            auto element = cacheList.back();
+            cacheList.pop_back();
+            ptrs.erase(element.key);
+        }
+        cacheList.push_front(Node{key,value});
+        ptrs[key] = cacheList.begin();
     }
-    cacheList.push_front(Node{key,value});
-    //ptrs[key] = &(*cacheList.begin());
-
 }
 
 void LRUCache::remove(const int key) {
