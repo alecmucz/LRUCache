@@ -17,15 +17,14 @@ typedef struct Node{
 class LRUCache {
 private:
     list<Node> cacheList;
-    unordered_map<int, Node*> ptrs;
+    unordered_map<int, list<Node>::iterator> ptrs;
     int size;
-
 public:
     LRUCache();
-    explicit LRUCache(int maxSize);
+    LRUCache(int maxSize);
 
-    Node* getLRU();
-    Node* get(int key);
+    int getLRU();
+    int get(int key);
     void put(int key, int value);
     void remove(int key);
 };
