@@ -10,10 +10,8 @@ LRUCache::LRUCache(const int maxSize) {
 }
 
 int LRUCache::getLRU() {
-    const int temp = ptrs.end()->second->value;
-    //To-Do: Move back element to the front
-
-    return temp;
+    cacheList.splice(cacheList.begin(),cacheList,cacheList.end());
+    return ptrs[1]->value;
 }
 
 int LRUCache::get(const int key) {
@@ -25,15 +23,14 @@ int LRUCache::get(const int key) {
 }
 
 void LRUCache::put(const int key,const int value) {
-    auto const element = ptrs.find(key);
-    if(element != ptrs.end()) {
+    if(auto const element = ptrs.find(key); element != ptrs.end()) {
         element->second->value = value;
         cacheList.splice(cacheList.begin(),cacheList,element->second);
     } else {
         if(cacheList.size() >= size) {
-            auto element = cacheList.back();
+            Node elem = cacheList.back();
             cacheList.pop_back();
-            ptrs.erase(element.key);
+            ptrs.erase(elem.key);
         }
         cacheList.push_front(Node{key,value});
         ptrs[key] = cacheList.begin();

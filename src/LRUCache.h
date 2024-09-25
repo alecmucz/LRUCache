@@ -20,7 +20,7 @@ private:
     unordered_map<int, list<Node>::iterator> ptrs;
     int size;
 public:
-    LRUCache(int maxSize);
+    explicit LRUCache(int maxSize);
 
     int getLRU();
     int get(int key);
